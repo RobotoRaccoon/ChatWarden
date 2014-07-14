@@ -1,0 +1,29 @@
+global:
+  ## Set to false to entirely disable.
+  enabled: true
+  ## Set to true to always allow bypass.
+  bypass-staff: true
+  ## Set to false to always disable notifications in game.
+  notify-staff: true
+case:
+  enabled: true
+  bypass-staff: true
+  notify-staff: false
+  ignored-words:
+  - MCAU
+  ## Minimum amount of characters (excl. space/periods) before filtering.
+  min-chars: 10
+  ## Number between 0-1 of how many uppercase letters will trigger the filter.
+  min-ratio: 0.7
+spam:
+  enabled: true
+  bypass-staff: true
+  notify-staff: false
+  ## How many times a user can say the message before getting silenced.
+  repeat-count: 3
+  ## How far the messages are to be in levenshtein distance.
+  repeat-distance: 5
+swear:
+  enabled: true
+  bypass-staff: true
+  notify-staff: true

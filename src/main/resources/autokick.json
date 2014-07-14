@@ -1,0 +1,22 @@
+[
+    {
+        "regex":".*(?i)(c|k)+\\W?u+\\W?n+\\W?t+s?.*",
+        "reason":"Disgusting language"
+    },
+    {
+        "regex":".*(?i)\\bfag(got)?s?\\b.*",
+        "reason":"Homophobia"
+    },
+    {
+        "regex":".*(?i)\\bnigg(a|er)s?\\b.*",
+        "reason":"Racism"
+    },
+    {
+        "regex":".*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}.*",
+        "reason":"Advertising"
+    },
+    {
+        "regex":".*(?i)\\.(tk|no-ip).*",
+        "reason":"Advertising"
+    }
+]

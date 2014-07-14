@@ -1,0 +1,22 @@
+## Supported macro tokens for console/staff logging:
+## %PLAYER% - The player's username.
+## %MESSAGE% - The message send by the player.
+
+## Special macro tokens:
+## %REASON% - swear.kick.reason
+
+case:
+  filter:
+    local: '&4Warning: &cPlease do not speak in capitals.'
+    staff: '&4%PLAYER% &cwas filtered for spamming: &4"%MESSAGE%"'
+    console: '%PLAYER% was filtered for spamming: "%MESSAGE%"'
+spam:
+  cancel:
+    local: '&4Warning: &cPlease do not spam chat.'
+    staff: '&4%PLAYER% &cwas silenced for spamming: &4"%MESSAGE%"'
+    console: '%PLAYER% was silenced for spamming: "%MESSAGE%"'
+swear:
+  kick:
+    local: '&5%REASON% &eis unacceptable on this server. Continued abuse will result in a ban.'
+    staff: '&4%PLAYER% &cwas kicked for saying: &4"%MESSAGE%"'
+    console: '%PLAYER% was kicked for saying: "%MESSAGE%"'

@@ -1,0 +1,25 @@
+name: ChatWarden
+version: 1.0.0-b8
+description: Chat moderation for Minecraft Australia
+
+author: RobotoRaccoon
+main: org.mcau.robotoraccoon.chatwarden.mMain
+website: http://mcau.org
+
+permissions:
+  chatwarden.commands.staff:
+    default: op
+    description: People who can run staff commands.
+  chatwarden.staff:
+    default: op
+    description: People who are treated as staff when moderating chat.
+  chatwarden.player:
+    default: true
+    description: People who are affected by the plugin.
+
+commands:
+   chatwarden:
+      description: Allows you to view reload the config.
+      aliases: cw
+      usage: |
+        /<command> reload : Reload the config file.
