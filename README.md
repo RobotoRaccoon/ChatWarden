@@ -1,3 +1,3 @@
 ChatWarden
 ==============
-http://dev.bukkit.org/bukkit-plugins/chatwardenmcau/
+http://dev.bukkit.org/bukkit-plugins/chatwarden/
