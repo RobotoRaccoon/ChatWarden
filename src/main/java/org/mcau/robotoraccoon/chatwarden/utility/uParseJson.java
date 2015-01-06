@@ -25,13 +25,13 @@ public class uParseJson {
             if ( !getAutokickFile().exists() ) mMain.getPlugin().saveResource("autokick.json", true);
 
             BufferedReader autokickFileReader = new BufferedReader( new FileReader( getAutokickFile() ) );
-            StringBuilderWriter autokickoneline = new StringBuilderWriter();
+            String autokickoneline = "";
             String autokickfile;
 
             // Convert all of the lines into a single string.
-            while( (autokickfile = autokickFileReader.readLine()) != null) autokickoneline.append(autokickfile);
+            while( (autokickfile = autokickFileReader.readLine()) != null) autokickoneline += autokickfile;
 
-            JSONArray jsonObject = (JSONArray) jsonParser.parse( autokickoneline.toString().replaceAll("\\r\\n|\\r|\\n", " ") );
+            JSONArray jsonObject = (JSONArray) jsonParser.parse( autokickoneline.replaceAll("\\r\\n|\\r|\\n", " ") );
 
             // Clear array and add values from the json.
             uSwear.autokickRegexList.clear();
