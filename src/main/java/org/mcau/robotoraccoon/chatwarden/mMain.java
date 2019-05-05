@@ -8,6 +8,10 @@ public class mMain extends JavaPlugin {
 
     private static Plugin plugin;
 
+    public static Plugin getPlugin() {
+        return plugin;
+    }
+
     @Override
     public void onEnable() {
 
@@ -18,8 +22,8 @@ public class mMain extends JavaPlugin {
         pluginManager.registerEvents(new mEvents(), this);
 
         // Commands
-        getCommand( "chatwarden" ).setExecutor( new mCommands() );
-        getCommand( "cw"         ).setExecutor( new mCommands() );
+        getCommand("chatwarden").setExecutor(new mCommands());
+        getCommand("cw").setExecutor(new mCommands());
 
         // Config + Json
         new mConfig();
@@ -30,10 +34,6 @@ public class mMain extends JavaPlugin {
     @Override
     public void onDisable() {
 
-    }
-
-    public static Plugin getPlugin() {
-        return plugin;
     }
 
 }

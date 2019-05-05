@@ -15,25 +15,30 @@ public class mConfig {
     private static FileConfiguration config;
     private static FileConfiguration languageConfig;
 
-    public static FileConfiguration getConfig(){ return config; }
-    public static FileConfiguration getLanguageConfig(){ return languageConfig; }
+    public mConfig() {
 
-    public mConfig(){
-
-        configFile = new File( mMain.getPlugin().getDataFolder(), "config.yml" );
-        languageFile = new File( mMain.getPlugin().getDataFolder(), "lang.yml" );
+        configFile = new File(mMain.getPlugin().getDataFolder(), "config.yml");
+        languageFile = new File(mMain.getPlugin().getDataFolder(), "lang.yml");
 
         config = YamlConfiguration.loadConfiguration(configFile);
-        languageConfig = YamlConfiguration.loadConfiguration( languageFile );
+        languageConfig = YamlConfiguration.loadConfiguration(languageFile);
 
     }
 
-    public static void createAllFiles(){
+    public static FileConfiguration getConfig() {
+        return config;
+    }
 
-        if( !configFile.exists() ) {
+    public static FileConfiguration getLanguageConfig() {
+        return languageConfig;
+    }
+
+    public static void createAllFiles() {
+
+        if (!configFile.exists()) {
             mMain.getPlugin().saveResource("config.yml", true);
         }
-        if( !languageFile.exists() ) {
+        if (!languageFile.exists()) {
             mMain.getPlugin().saveResource("lang.yml", true);
         }
 
@@ -41,12 +46,12 @@ public class mConfig {
 
     }
 
-    public static boolean loadConfigs(){
+    public static boolean loadConfigs() {
 
-        try{
+        try {
 
-            config = YamlConfiguration.loadConfiguration( new File( mMain.getPlugin().getDataFolder(), "config.yml" ) );
-            languageConfig = YamlConfiguration.loadConfiguration( new File( mMain.getPlugin().getDataFolder(), "lang.yml" ) );
+            config = YamlConfiguration.loadConfiguration(new File(mMain.getPlugin().getDataFolder(), "config.yml"));
+            languageConfig = YamlConfiguration.loadConfiguration(new File(mMain.getPlugin().getDataFolder(), "lang.yml"));
 
             mMain.getPlugin().reloadConfig();
 
@@ -55,7 +60,7 @@ public class mConfig {
 
             return true;
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             e.printStackTrace();
             return false;
@@ -64,12 +69,12 @@ public class mConfig {
 
     }
 
-    public static void saveConfigs(){
+    public static void saveConfigs() {
 
         try {
 
-            config.save( configFile );
-            languageConfig.save( languageFile );
+            config.save(configFile);
+            languageConfig.save(languageFile);
 
         } catch (IOException e) {
 

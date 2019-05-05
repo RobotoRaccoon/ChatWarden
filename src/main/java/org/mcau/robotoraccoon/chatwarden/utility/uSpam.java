@@ -16,35 +16,35 @@ public class uSpam {
     public static Boolean checkSpam(Player player, String chat) {
 
         // Go back if staff have bypass on.
-        if( player.hasPermission("chatwarden.staff") && mConfig.getConfig().getBoolean("spam.bypass-staff") ) {
+        if (player.hasPermission("chatwarden.staff") && mConfig.getConfig().getBoolean("spam.bypass-staff")) {
             return false;
         }
 
         // Repeated characters.
-        if( chat.matches(".*(\\D.?.?)\\1{6,}.*") ) {
+        if (chat.matches(".*(\\D.?.?)\\1{6,}.*")) {
             return true;
         }
 
         // Levenshtein distance checking.
-        if( !chatRepeats.containsKey(player.getName()) ) {
+        if (!chatRepeats.containsKey(player.getName())) {
             chatRepeats.put(player.getName(), new HashMap<String, String>());
         }
 
-        if( !chatRepeats.get(player.getName()).containsKey("last") || !chatRepeats.get(player.getName()).containsKey("count") ) {
+        if (!chatRepeats.get(player.getName()).containsKey("last") || !chatRepeats.get(player.getName()).containsKey("count")) {
             chatRepeats.get(player.getName()).put("last", "");
             chatRepeats.get(player.getName()).put("count", "0");
         }
 
         String chatLast = chatRepeats.get(player.getName()).get("last");
 
-        if( chatLast == null || chatLast.isEmpty() ) {
+        if (chatLast == null || chatLast.isEmpty()) {
             chatLast = "";
         }
 
         Integer allowedDistance = Math.min(mConfig.getConfig().getInt("spam.repeat-distance"), chat.length());
         Integer chatDistance = getLevenshteinDistance(chat, chatLast);
 
-        if( chatDistance >= allowedDistance ) {
+        if (chatDistance >= allowedDistance) {
             chatRepeats.get(player.getName()).put("count", "0");
             chatRepeats.get(player.getName()).put("last", chat);
         } else {
@@ -55,9 +55,7 @@ public class uSpam {
             chatRepeats.get(player.getName()).put("count", repeatCount.toString());
             chatRepeats.get(player.getName()).put("last", chat);
 
-            if( repeatCount >= mConfig.getConfig().getInt("spam.repeat-count") ) {
-                return true;
-            }
+            return repeatCount >= mConfig.getConfig().getInt("spam.repeat-count");
 
         }
 

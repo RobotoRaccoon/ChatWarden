@@ -1,10 +1,11 @@
-name: ChatWarden
-version: 1.0.0-b9
-description: Chat moderation for Minecraft Australia
+name: ${project.name}
+version: ${project.version}-b${build.number}
+description: ${project.description}
+api-version: 1.13
 
 author: RobotoRaccoon
-main: org.mcau.robotoraccoon.chatwarden.mMain
-website: http://mcau.org
+main: ${project.groupId}.${project.artifactId}.mMain
+website: ${organization.url}
 
 permissions:
   chatwarden.commands.staff:

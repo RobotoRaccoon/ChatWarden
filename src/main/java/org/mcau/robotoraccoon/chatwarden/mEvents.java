@@ -16,7 +16,7 @@ public class mEvents implements Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
         // Do nothing if not enabled globally.
-        if( !mConfig.getConfig().getBoolean("global.enabled") ) {
+        if (!mConfig.getConfig().getBoolean("global.enabled")) {
             return;
         }
 
@@ -24,19 +24,19 @@ public class mEvents implements Listener {
         String newMessage = event.getMessage();
 
         // Do nothing if staff have global bypass.
-        if( player.hasPermission("chatwarden.staff") && mConfig.getConfig().getBoolean("global.bypass-staff") ) {
+        if (player.hasPermission("chatwarden.staff") && mConfig.getConfig().getBoolean("global.bypass-staff")) {
             return;
         }
 
         // Do nothing if player isn't being filtered.
-        if( !player.hasPermission("chatwarden.player") ) {
+        if (!player.hasPermission("chatwarden.player")) {
             return;
         }
 
         // Check swear if enabled.
-        if( mConfig.getConfig().getBoolean("swear.enabled") ) {
+        if (mConfig.getConfig().getBoolean("swear.enabled")) {
 
-            if( uSwear.checkSwear(player, newMessage) ) {
+            if (uSwear.checkSwear(player, newMessage)) {
 
                 uAlerts.alertSwear(player, newMessage);
                 event.setCancelled(true);
@@ -46,9 +46,9 @@ public class mEvents implements Listener {
         }
 
         // Check spam if enabled.
-        if( mConfig.getConfig().getBoolean("spam.enabled") ) {
+        if (mConfig.getConfig().getBoolean("spam.enabled")) {
 
-            if( uSpam.checkSpam(player, newMessage) ) {
+            if (uSpam.checkSpam(player, newMessage)) {
 
                 uAlerts.alertSpam(player, newMessage);
                 event.setCancelled(true);
@@ -58,9 +58,9 @@ public class mEvents implements Listener {
         }
 
         // Check case if enabled.
-        if( mConfig.getConfig().getBoolean("case.enabled") ) {
+        if (mConfig.getConfig().getBoolean("case.enabled")) {
 
-            if( uCase.checkCase(player, newMessage) ) {
+            if (uCase.checkCase(player, newMessage)) {
 
                 uAlerts.alertCase(player, newMessage);
                 newMessage = newMessage.substring(0, 1).toUpperCase() + newMessage.substring(1).toLowerCase();

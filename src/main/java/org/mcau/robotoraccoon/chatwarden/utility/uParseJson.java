@@ -1,57 +1,54 @@
 package org.mcau.robotoraccoon.chatwarden.utility;
 
-import java.io.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.mcau.robotoraccoon.chatwarden.mMain;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.util.org.apache.commons.io.output.StringBuilderWriter;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.mcau.robotoraccoon.chatwarden.mMain;
-
 public class uParseJson {
 
+    private static final JsonParser jsonParser = new JsonParser();
     private static File autokickFile = new File(mMain.getPlugin().getDataFolder(), "autokick.json");
-    private static final JSONParser jsonParser = new JSONParser();
 
     // Convert the json from the specified file into an array of maps.
     public static void main() {
 
         try {
-
             // Ensure the file exists.
-            if ( !getAutokickFile().exists() ) mMain.getPlugin().saveResource("autokick.json", true);
+            if (!getAutokickFile().exists()) mMain.getPlugin().saveResource("autokick.json", true);
 
-            BufferedReader autokickFileReader = new BufferedReader( new FileReader( getAutokickFile() ) );
+            BufferedReader autokickFileReader = new BufferedReader(new FileReader(getAutokickFile()));
             String autokickoneline = "";
             String autokickfile;
 
             // Convert all of the lines into a single string.
-            while( (autokickfile = autokickFileReader.readLine()) != null) autokickoneline += autokickfile;
+            while ((autokickfile = autokickFileReader.readLine()) != null)
+                autokickoneline += autokickfile;
 
-            JSONArray jsonObject = (JSONArray) jsonParser.parse( autokickoneline.replaceAll("\\r\\n|\\r|\\n", " ") );
+            JsonArray jsonObject = (JsonArray) jsonParser.parse(autokickoneline.replaceAll("\\r\\n|\\r|\\n", " "));
 
             // Clear array and add values from the json.
             uSwear.autokickRegexList.clear();
-            for( Object currentAutoKickThing : jsonObject ){
-
-                JSONObject autokickCurrentObjectJSON = (JSONObject) currentAutoKickThing;
+            for (Object currentAutoKickThing : jsonObject) {
+                JsonObject autokickCurrentObjectJSON = (JsonObject) currentAutoKickThing;
 
                 Map<String, String> autokickMap = new HashMap<>();
 
-                autokickMap.put( "regex", (String) autokickCurrentObjectJSON.get( "regex" ) );
-                autokickMap.put( "reason", (String) autokickCurrentObjectJSON.get( "reason" ) );
+                autokickMap.put("regex", autokickCurrentObjectJSON.get("regex").getAsString());
+                autokickMap.put("reason", autokickCurrentObjectJSON.get("reason").getAsString());
 
                 uSwear.autokickRegexList.add(autokickMap);
-
             }
 
-        } catch (ParseException | IOException e) {
-
+        } catch (IOException e) {
             e.printStackTrace();
-
         }
 
     }

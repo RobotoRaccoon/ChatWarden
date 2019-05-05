@@ -8,17 +8,17 @@ import org.mcau.robotoraccoon.chatwarden.mMain;
 
 public class uAlerts {
 
-    public static void notifyStaff( String msg ) {
+    public static void notifyStaff(String msg) {
 
         // Do nothing if notify-staff is not enabled globally.
-        if( !mMain.getPlugin().getConfig().getBoolean("global.notify-staff") ) {
+        if (!mMain.getPlugin().getConfig().getBoolean("global.notify-staff")) {
             return;
         }
 
         // Loop through all users; check for staff permission; send the message.
-        for( Player user: Bukkit.getServer().getOnlinePlayers() ) {
-            if( user.hasPermission("chatwarden.staff") ) {
-                user.sendMessage( ChatColor.translateAlternateColorCodes('&',msg) );
+        for (Player user : Bukkit.getServer().getOnlinePlayers()) {
+            if (user.hasPermission("chatwarden.staff")) {
+                user.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
             }
         }
 
@@ -26,7 +26,7 @@ public class uAlerts {
 
     // Anyone have an idea on how to make the processing of macro tokens easier?
 
-    public static void alertCase( Player player, String msg ) {
+    public static void alertCase(Player player, String msg) {
 
         // Console.
         String msgConsole = mConfig.getLanguageConfig().getString("case.filter.console");
@@ -40,7 +40,7 @@ public class uAlerts {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', msgLocal));
 
         // Staff.
-        if( mMain.getPlugin().getConfig().getBoolean("case.notify-staff") ) {
+        if (mMain.getPlugin().getConfig().getBoolean("case.notify-staff")) {
             String msgStaff = mConfig.getLanguageConfig().getString("case.filter.staff");
             msgStaff = msgStaff.replace("%PLAYER%", player.getName());
             msgStaff = msgStaff.replace("%MESSAGE%", msg);
@@ -64,7 +64,7 @@ public class uAlerts {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', msgLocal));
 
         // Staff.
-        if( mMain.getPlugin().getConfig().getBoolean("spam.notify-staff") ) {
+        if (mMain.getPlugin().getConfig().getBoolean("spam.notify-staff")) {
             String msgStaff = mConfig.getLanguageConfig().getString("spam.cancel.staff");
             msgStaff = msgStaff.replace("%PLAYER%", player.getName());
             msgStaff = msgStaff.replace("%MESSAGE%", msg);
@@ -74,7 +74,7 @@ public class uAlerts {
 
     }
 
-    public static void alertSwear( Player player, String msg ) {
+    public static void alertSwear(Player player, String msg) {
 
         // Console.
         String msgConsole = mConfig.getLanguageConfig().getString("swear.kick.console");
@@ -88,7 +88,7 @@ public class uAlerts {
         //player.sendMessage(ChatColor.translateAlternateColorCodes('&', msgLocal));
 
         // Staff.
-        if( mMain.getPlugin().getConfig().getBoolean("swear.notify-staff") ) {
+        if (mMain.getPlugin().getConfig().getBoolean("swear.notify-staff")) {
             String msgStaff = mConfig.getLanguageConfig().getString("swear.kick.staff");
             msgStaff = msgStaff.replace("%PLAYER%", player.getName());
             msgStaff = msgStaff.replace("%MESSAGE%", msg);

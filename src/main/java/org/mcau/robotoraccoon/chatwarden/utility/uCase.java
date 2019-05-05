@@ -11,7 +11,7 @@ public class uCase {
     public static Boolean checkCase(Player player, String chat) {
 
         // Go back if staff have bypass on.
-        if( player.hasPermission("chatwarden.staff") && mConfig.getConfig().getBoolean("case.bypass-staff") ) {
+        if (player.hasPermission("chatwarden.staff") && mConfig.getConfig().getBoolean("case.bypass-staff")) {
             return false;
         }
 
@@ -25,30 +25,25 @@ public class uCase {
         String caseString = chat;
 
         // Strip out ignored words, spaces, and some punctuation.
-        for(int i = 0; i < ignoredWords.size(); i++) {
+        for (int i = 0; i < ignoredWords.size(); i++) {
             caseString = caseString.replaceAll((String) ignoredWords.get(i), "");
         }
         caseString = caseString.replaceAll("( |\\.)", "");
 
         // Find the total count of "yelling" in the string.
-        for(int i=0; i < caseString.length(); i++) {
+        for (int i = 0; i < caseString.length(); i++) {
 
-            if( caseString.charAt(i) == '!' ) {
+            if (caseString.charAt(i) == '!') {
                 caseCount++;
-            }
-            else for(char c='A'; c<='Z'; c++) {
-                if ( caseString.charAt(i) == c ) {
+            } else for (char c = 'A'; c <= 'Z'; c++) {
+                if (caseString.charAt(i) == c) {
                     caseCount++;
                 }
             }
         }
 
         // Filter when caseCount is higher than the ratio in the config.yml
-        if( (caseString.length() > minChars) && (caseCount > caseString.length() * minRatio) ) {
-            return true;
-        }
-
-        return false;
+        return (caseString.length() > minChars) && (caseCount > caseString.length() * minRatio);
 
     }
 

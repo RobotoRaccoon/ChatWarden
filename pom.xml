@@ -9,10 +9,10 @@
 
     <name>ChatWarden</name>
     <description>Chat moderation for Minecraft Australia</description>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <properties>
-        <build.number>9</build.number>
+        <build.number>10</build.number>
     </properties>
 
     <organization>
@@ -52,16 +52,16 @@
 
     <repositories>
         <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public/</url>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.7.9-R0.1</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
